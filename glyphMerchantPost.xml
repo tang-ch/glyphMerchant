@@ -1,0 +1,190 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\..\FrameXML\UI.xsd">
+	<Script file="locale.lua"/>
+	<Frame name="glyphMerchantPost" topLevel="true" frameStrata="MEDIUM" enableMouse="true" movable="true" hidden="true">
+		<Size>
+			<AbsDimension x="244" y="16"/>
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER">
+				<Offset y="200"/>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentbg" setAllPoints="true">
+					<Color r="0.05" g="0.05" b="0.05" a="1"/>
+				</Texture>
+			</Layer>
+			<Layer level="OVERLAY">
+				<FontString name="$parentTitle" inherits="GameFontNormal" text="glyphMerchant"> 
+					<Anchors>
+						<Anchor point="CENTER"/>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentCloseButton" inherits="UIPanelCloseButton"> 
+				<Size>
+					<AbsDimension x="24" y="24"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPRIGHT">
+						<Offset x="5" y="5"/>
+					</Anchor>
+				</Anchors>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad> glyphMerchantPostTitle:SetText(glyphMerchantPostTitleText) </OnLoad>
+			<OnMouseDown> self:StartMoving() </OnMouseDown>
+			<OnMouseUp> self:StopMovingOrSizing() </OnMouseUp>
+			<OnDragStop> self:StopMovingOrSizing() </OnDragStop>
+		</Scripts>
+	</Frame>
+	<Button name="glyphMerchantPostVirtualButton1" virtual="true">
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture setAllPoints="true">
+					<Color r="0.20" g="0.20" b="0.20" a="1"/>
+				</Texture>
+			</Layer>
+			<Layer level="OVERLAY">
+				<FontString name="$parentText" inherits="GameFontWhiteSmall"> 
+					<Anchors>
+						<Anchor point="LEFT">
+							<Offset x="2"/>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLeave> GameTooltip:Hide() </OnLeave>
+		</Scripts>
+	</Button>
+	<Button name="glyphMerchantPostVirtualButton2" virtual="true">
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture setAllPoints="true">
+					<Color r="0.20" g="0.20" b="0.20" a="1"/>
+				</Texture>
+			</Layer>
+			<Layer level="OVERLAY">
+				<FontString name="$parentText" inherits="GameFontWhiteSmall"> 
+					<Anchors>
+						<Anchor point="RIGHT">
+							<Offset x="-2"/>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLeave> GameTooltip:Hide() </OnLeave>
+		</Scripts>
+	</Button>
+	<Button name="glyphMerchantPostVirtualButton3" virtual="true">
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture setAllPoints="true">
+					<Color r="0.20" g="0.20" b="0.20" a="1"/>
+				</Texture>
+			</Layer>
+			<Layer level="OVERLAY">
+				<FontString name="$parentText" inherits="GameFontWhiteSmall"> 
+					<Anchors>
+						<Anchor point="CENTER"/>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLeave> GameTooltip:Hide() </OnLeave>
+		</Scripts>
+	</Button>
+	<Frame name="glyphMerchantPostVirtualBar1" virtual="true">
+		<Size>
+			<AbsDimension x="244" y="16"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentbg" setAllPoints="true">
+					<Color r="0.15" g="0.15" b="0.15" a="1"/>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentButton1" inherits="glyphMerchantPostVirtualButton1">
+				<Size>
+					<AbsDimension x="100" y="12"/>
+				</Size>
+				<Anchors>
+					<Anchor point="LEFT">
+						<Offset x="1"/>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentButton2" inherits="glyphMerchantPostVirtualButton2">
+				<Size>
+					<AbsDimension x="70" y="12"/>
+				</Size>
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentButton1" relativePoint="RIGHT">
+						<Offset x="1"/>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentButton3" inherits="glyphMerchantPostVirtualButton2">
+				<Size>
+					<AbsDimension x="70" y="12"/>
+				</Size>
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentButton2" relativePoint="RIGHT">
+						<Offset x="1"/>
+					</Anchor>
+				</Anchors>
+			</Button>
+		</Frames>
+	</Frame>
+	<Frame name="glyphMerchantPostHead" parent="glyphMerchantPost" inherits="glyphMerchantPostVirtualBar1">
+		<Anchors>
+			<Anchor point="TOP" relativePoint="BOTTOM"/>
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				glyphMerchantPostHeadButton1Text:SetTextColor (1, 0.82, 0)
+				glyphMerchantPostHeadButton2Text:SetTextColor (1, 0.82, 0)
+				glyphMerchantPostHeadButton3Text:SetTextColor (1, 0.82, 0)
+				glyphMerchantPostHeadButton1Text:SetText (glyphMerchantPostHeadName)
+				glyphMerchantPostHeadButton2Text:SetText (glyphMerchantPostHeadMinUnitPrice)
+				glyphMerchantPostHeadButton3Text:SetText (glyphMerchantPostHeadMyPrice)
+			</OnLoad>
+		</Scripts>
+	</Frame>
+	<ScrollFrame name="glyphMerchantScrollFrame" parent="glyphMerchantPost" inherits="UIPanelScrollFrameTemplate">
+		<Size>
+			<AbsDimension y="288"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="glyphMerchantPostHead" relativePoint="BOTTOMLEFT"/>
+			<Anchor point="TOPRIGHT" relativeTo="glyphMerchantPostHead" relativePoint="BOTTOMRIGHT"/>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentbg" setAllPoints="true">
+					<Color r="0.1" g="0.1" b="0.1" a="0.5"/>
+				</Texture>
+			</Layer>
+		</Layers>
+		<ScrollChild>
+			<Frame name="glyphMerchantPostList">
+				<Anchors>
+					<Anchor point="TOPLEFT"/>
+					<Anchor point="TOPRIGHT"/>
+				</Anchors>
+			</Frame>
+		</ScrollChild>
+	</ScrollFrame>
+</Ui>

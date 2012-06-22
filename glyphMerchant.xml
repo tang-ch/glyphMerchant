@@ -1,0 +1,113 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\..\FrameXML\UI.xsd">
+	<Script file="locale.lua"/>
+	<Script file="glyphDB.lua"/>
+	<Script file="glyphMerchant.lua"/>
+	<Include file="glyphMerchantPost.xml"/>
+	<Button name="glyphMerchantButton" parent="AuctionFrame" inherits="UIPanelButtonTemplate"> 
+		<Size>
+			<AbsDimension x="80" y="22"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-140" y="-13"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnClick>
+				if glyphMerchantSubButton:IsShown () then
+					glyphMerchantSubButton:Hide()
+				else
+					glyphMerchantSubButton:Show()
+				end
+			</OnClick>
+			<OnLoad>
+				self:SetText (glyphMerchantButtonText)
+			</OnLoad>
+		</Scripts>
+	</Button>
+	<Frame name="glyphMerchantSubButton" parent="glyphMerchantButton" toplevel="true" frameStrata="DIALOG" hidden="true">
+		<Size>
+			<AbsDimension x="80" y="120"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="glyphMerchantButton" relativePoint="BOTTOMLEFT"/>
+		</Anchors>
+		<Frames>
+			<Button name="$parent1" inherits="UIPanelButtonTemplate">
+				<Size>
+					<AbsDimension x="80" y="24"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT"/>
+				</Anchors>
+				<Scripts>
+					<OnLoad> self:SetText (glyphMerchantDropDownMenuScanText) </OnLoad>
+					<OnClick>
+						glyphMerchant_scan ();
+						self:GetParent():Hide();
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parent2" inherits="UIPanelButtonTemplate">
+				<Size>
+					<AbsDimension x="80" y="24"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-24"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad> self:SetText (glyphMerchantDropDownMenuShowText) </OnLoad>
+					<OnClick>
+						glyphMerchantPost:Show ();
+						self:GetParent():Hide();
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parent4" inherits="UIPanelButtonTemplate">
+				<Size>
+					<AbsDimension x="80" y="24"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-48"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad> self:SetText (glyphMerchantDropDownMenuCancelAuctionText) </OnLoad>
+					<OnClick>
+						glyphMerchant_cancelAuction ();
+						self:GetParent():Hide();
+					</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				local wasShown = false
+				local T = GetTime ()
+				local f = CreateFrame ("frame")
+				local function h ()
+					if not wasShown and self:IsShown () then
+						T = GetTime ()
+					end
+					if self:IsShown () and GetTime () - T > 3 then
+						self:Hide ()
+					end
+					wasShown = self:IsShown ()
+				end
+				f:SetScript ("OnUpdate", h)
+			</OnLoad>
+		</Scripts>
+	</Frame>
+	<Frame name="glyphMerchantShower" parent="UIParent" hidden="true">
+	</Frame>	
+</Ui>

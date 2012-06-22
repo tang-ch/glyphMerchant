@@ -1,0 +1,7 @@
+## Interface: 30200
+## Title: glyphMerchant
+## Notes-zhCN: 铭文商人
+## LoadOnDemand: 1
+## LoadWith: Blizzard_AuctionUI
+
+glyphMerchant.xml
