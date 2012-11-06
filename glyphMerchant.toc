@@ -1,4 +1,4 @@
-## Interface: 30200
+## Interface: 50001
 ## Title: glyphMerchant
 ## Notes-zhCN: 铭文商人
 ## LoadOnDemand: 1
